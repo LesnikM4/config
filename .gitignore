@@ -1,3 +1,5 @@
-*
+/*
 !.gitignore
 !.tmux.conf
+!/.fonts
+!/.fonts/*
