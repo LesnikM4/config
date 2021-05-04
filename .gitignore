@@ -3,3 +3,5 @@
 !.tmux.conf
 !/.fonts
 !/.fonts/*
+!/.themes/
+!/.themes/*
