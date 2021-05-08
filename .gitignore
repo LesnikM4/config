@@ -1,7 +1,8 @@
 /*
-!.gitignore
-!.tmux.conf
+!/.gitignore
+!/.tmux.conf
 !/.fonts
 !/.fonts/*
 !/.themes/
 !/.themes/*
+!/.gitconfig
