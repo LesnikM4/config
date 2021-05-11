@@ -3,6 +3,7 @@
 !/.tmux.conf
 !/.fonts
 !/.fonts/*
+/.fonts/**/.uuid
 !/.themes/
 !/.themes/*
 !/.gitconfig
