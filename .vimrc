@@ -1,13 +1,4 @@
 " ЯЗЫК И РАСКЛАДКА
-" Соответствие клавиш русской клавиатуры к латинской, для ввода команд в нормальном режмие
-"set langmap=ёйцукенгшщзхъфывапролджэячсмитьбю;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.
-"set langmap=ЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
-" Соответствие команд в командном режиме
-"cnoreabbrev ц w
-"cnoreabbrev ч x
-"cnoreabbrev цй wq
-"cnoreabbrev й q
-"cnoreabbrev й! q!
 " Включение внутренней поддержки переключени русской раскладки по Ctrl+^
 set keymap=russian-jcukenwin
 " При запуске устанавливает английский в режиме вставки
@@ -16,30 +7,24 @@ set iminsert=0
 set imsearch=0
 
 " ТЕМА И ПОДСВЕТКА
-" Показывать строки с позицией курсора
-set ruler
-" Включить строку состояния
-"set laststatus=2
-" Включить подсветку текущей строки
-"set cursorline
-" Установить статус
-"set statusline=%t\ %y%m%r[%{&fileencoding}]%<[%{strftime(\"%d.%m.%y\",getftime(expand(\"%:p\")))}]%k%=%-14.(%l,%c%V%)\ %P
+" Отключить строку состояния (значение 2 - включить)
+set laststatus=1
+" Отключить подсветку текущей строки
+set nocursorline
 " Установка темы
 colorscheme peachpuff
 " Изменение цветов под темный фон
 set background=dark
 " Включить перенос длинных строк
 set wrap
-" Включить перенос длинных строк по словам 
-"set linebreak
+" Оключить перенос длинных строк по словам 
+set nolinebreak
 " Отображать перенос строк с отсупом исходной строки
 set breakindent
 " Включить определение типа файла
 filetype plugin on
 " Подсветка синтаксиса по типу файла
 syntax on
-" Изменение цвета элемента
-"highlight Cursor guibg=Green guifg=NONE guibg=grey80
 " Подсвечивать табы и пробелы в конце строки
 set list
 " Установить символы, которыми будет осуществляться подсветка
@@ -52,8 +37,8 @@ set shortmess+=I
 autocmd CursorMoved * silent! exe printf("match Search /\\<%s\\>/", expand('<cword>'))
 " Поиск фрагмента по мере набора
 set incsearch
-" Подсветка результатов поиска
-set hlsearch
+" Отключить подсветку результатов поиска
+set nohlsearch
 " Не учитывать регистр символов при поиске
 set ignorecase
 " Учитывать регистр символов при поиске, только если есть символы в верхнем регистре
@@ -100,6 +85,7 @@ set noerrorbells
 set visualbell
 
 " БЕКАП
+" TODO Win
 " Создание каталога с сохранениями
 silent !mkdir ~/.vim/backups > /dev/null 2>&1
 " Включить бекапы редактируемых файлов до внесения изменеий
@@ -116,6 +102,10 @@ set directory=~/.vim/backups//,. " если не найден каталог с 
 set history=128
 " Длина истории изменений
 set undolevels=2048
+
+
+" Изменение цвета элемента
+"highlight Cursor guibg=Green guifg=NONE guibg=grey80
 
 " Годный файл с настройками, много настроек для кодировок файла
 "https://wiki.research.ru.com/?p=529
