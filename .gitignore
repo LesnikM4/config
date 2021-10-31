@@ -2,11 +2,9 @@
 !/.gitignore
 !/.tmux.conf
 !/.fonts
-!/.fonts/*
 /.fonts/**/.uuid
-!/.themes/
-!/.themes/*
+!/.themes
 !/.gitconfig
 !/.vimrc
 !/.scripts
-!/.scripts/*
+!/.termux
