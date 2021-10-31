@@ -8,4 +8,5 @@
 !/.themes/*
 !/.gitconfig
 !/.vimrc
-#TEST
+!/.scripts
+!/.scripts/*
