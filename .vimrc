@@ -4,7 +4,7 @@ set iminsert=0 "Английский в режиме вставки
 set imsearch=0 "Английский в режиме поиска
 
 " ТЕМА И ПОДСВЕТКА
-colorscheme peachpuff
+colorscheme desert
 set nocursorline "Подчеркивание текущей строки
 set background=dark
 set wrap "Перенос строк
