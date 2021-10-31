@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Application setting for touchpad
+synclient TapButton1=1 TapButton2=3 RBCornerButton=3 #VertEdgeScroll=1 HorizEdgeScroll=1 PalmDetect=1

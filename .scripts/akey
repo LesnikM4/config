@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Emulation input symbol in first parameter
+xvkbd -xsendevent -text $1

@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+date=$(date +"%Y.%m.%d")
+dir_backup="/media/lm/lm-backup"
+text_end="\033[32;1mEnd successfully\033[0m"
+text_fail="\033[31;1mFail\033[0m"
+
+case $1 in
+    -l|--linux)
+        [[ -e /mnt/vmlinuz ]] && \
+        echo "Start backup linux on /mnt/ in /mnt/backup/backup_linux_$date.tar.gz" && \
+        cd /mnt && \
+        tar --exclude=tmp --exclude=home/lm/.cache --exclude=swapfile --exclude=backup -czpf \
+        /mnt/backup/backup_linux_$date.tar.gz ./ && \
+        echo -e $text_end || echo -e $text_fail
+        ;;
+    -lr|--linux-restore)
+	    echo 'COMMAND FOR RESTORE
+cd /mnt
+tar --numeric-owner -xzpf bacup.tar.gz
+dd if=/dev/zero of=/mnt/swapfile bs=1M count=8192
+mkswap /mnt/swapfile
+chmod 600 /mnt/swapfile
+ls -l /dev/disk/by-uuid
+vim /mnt/etc/fstab
+mount --bind /dev /mnt/dev
+mount --bind /proc /mnt/proc
+mount --bind /sys /mnt/sys
+chroot /mnt
+grub-insatll /dev/sdX
+update-grub --output=/boot/grub/grub.cfg'
+        ;;
+    -da|--data-android)
+        echo "Start backup data on android-device in $dir_backup/data_android/backup_data_$date.tar.gz"  && \
+        mkdir $dir_backup/data_android/backup_data_$date && \
+        echo "Successfully creat dir for backup" && \
+        adb pull /sdcard $dir_backup/data_android/backup_data_$date && \
+        echo "Successfully copy data" && \
+        tar -czf $dir_backup/data_android/backup_data_$date.tar.gz $dir_backup/data_android/backup_data_$date && \
+        echo "Successfully compressed" && \
+        rm -r $dir_backup/data_android/backup_data_$date && \
+        echo -e $text_end || echo -e $text_fail
+        ;;
+    -lm|--linux-move)
+        echo "Start move linux backup in $dir_backup/linux/" && \
+        mv -fv /backup/backup_linux_* $dir_backup/linux/ && \
+        echo -e $text_end || echo -e $text_fail
+        ;;
+    -pm|--portableapps-move)
+        echo "Start move portableapps backup in" $dir_backup/portableapps/ && \
+        mv -fv /media/lm/lm-win/backup/PortableAppsBackup* $dir_backup/portableapps/ && \
+        echo -e $text_end || echo -e $text_fail
+        ;;
+    -am|--android-move)
+        echo -e "Start move backup on android-device in $dir_backup/android/" && \
+        adb pull /storage/C00B-1CFE/TWRP $dir_backup/android/ && \
+	    adb shell rm -r /storage/C00B-1CFE/TWRP/* && \
+	    adb pull /storage/C00B-1CFE/TitaniumBackup $dir_backup/android/ && \
+	    echo -e $text_end || echo -e $text_fail
+        ;;
+    -d|--data)
+        echo -e "Start backup data $dir_backup/data/backup_data_$date.tar.gz" && \
+        tar -czf $dir_backup/data/backup_data_$date.tar.gz /media/lm/lm-data && \
+	    echo -e $text_end || echo -e $text_fail
+        ;;
+    -h|--help|*)
+        echo "-d  --data"
+        echo "-da --data-android"
+        echo "-l  --linux"
+        echo "-lm --linux-move"
+        echo "-lr --linux-restore TODO"
+        echo "-pm --portableapps-move"
+        echo "-am --android-move"
+        ;;
+esac

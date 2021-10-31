@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+case $1 in
+    -m|--move)
+        while [ "$#" -ne "1" ]; do
+            echo "Open file $2"
+            termux-open "$2"
+            echo "Move image?(y/N)"
+            read item
+                case "$item" in 
+                    y) mv "$2" /sdcard/Pictures/ ; echo "Move";;
+                    q|n|not|*) echo "Not move";;
+                esac
+            shift
+        done
+        ;;
+    -l|--lable)
+        while [ "$#" -ne "1" ]; do
+            convert -composite "$2" /home/lm/Ракета\ Лого.png "/home/lm/Рокета/Ракета $2"
+            shift
+        done
+        ;;
+    -d|--duble)
+#TODO case -d|--duble 
+#IFS=
+#parallel -k -j4 \
+#[[ "{1}" != "{2}" ]] \
+#'&&' diff -s -q "{1}" "{2}" '>>/dev/null' \
+#'&&' echo '\"{1}\"' \
+#::: $1 ::: $1
+
+#'&&' compare -metric MEPP "{1}" "{2}" NULL: '2>&1' \
+#'|' 'sed "s/.* (\(.*\), .*/\1/"' \
+#'|' 'sed "s/..\(*\).../\1/"' \
+#'&&' echo '""' '\"{1}\"' \
+#::: $1 ::: $1 >>./res.txt
+# >>./res.txt
+        ;;
+    -h|--help|*)
+        echo "-m|--move"
+        echo "-d|--duble TODO"
+	echo "-l|--lable"
+        ;;
+esac

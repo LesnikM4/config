@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+case $1 in
+    -r|--rename)
+        while [ "$#" -ne "1" ] ; do
+	    if [[ "$2" == *.mp3 ]] ; then
+	        new_name=$(echo "$2" | sed -e 's/\ (2mz.me)//'\
+					                   -e 's/\ (muzzo.ru)//'\
+                                       -e 's/_muzonov_net//'\
+                                       -e 's/\ (kasetta.cc)//'\
+                                       -e 's/\ (radio.lol)//'\
+                                       -e 's/\ (mp3ha.org)//'\
+                                       -e 's/_(iPleer.com)//'\
+                                       -e 's/\ (unpum.com)//'\
+                                       -e 's/_(*.MP3VIZOR.COM)//'\
+                                       -e 's/_(yaya.su)//'\
+                                       -e 's/\ (320\ \ kbps)//'\
+                                       -e 's/\ (mp3profy.com)//'\
+                                       -e 's/-(megapesni.cc)//'\
+                                       -e 's/_(holidaymp3.ru)//'\
+                                       -e 's/\ (Muzten.net)//'\
+		                               -e 's/_(zf.fm)//'     )
+            new_name=$(echo "$new_name" | sed -e 's/_/\ /g')
+            if [[ "$2" != "$new_name" ]] ; then
+                echo "Rename music?(y/N)"
+                echo "OLD: $2"
+	            echo "NEW: $new_name"
+                read item
+                if [ "$item" == y ]; then
+	                mv "$2" "$new_name"
+                fi
+            fi
+	    fi
+        shift
+    	done
+    	;;
+    -t|--tag-remove)
+        while [ "$#" -ne "1" ] ; do
+	    if [[ "$2" == *.mp3 ]] ; then
+                eyeD3 --remove-all "$2"
+	    fi
+        shift
+    	done
+    	;;
+    -h|--help|*)
+        echo "-t|--tag-remove"
+        echo "-r|--rename"
+    	;;
+esac

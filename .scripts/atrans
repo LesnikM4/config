@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Get highlighted text
+text=$(xsel -o)
+# Define language text
+[[ "$text" = *[А-Яа-я]* ]] && lang="ENG" || lang="RU"
+# Translate text 
+trans=$(trans -b -t $lang "$text")
+# Output in message
+notify-send "$text" "$trans";
+# Record history, if in text not \n
+[[ "$text" = *\n* ]] || echo "$text" ":::" "$trans" >>~/.trans_history

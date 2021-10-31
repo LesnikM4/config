@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Запускается на андроид смартоне, для поднятия ADB по WiFi
+sudo setprop service.adb.tcp.port 5555
+sudo stop adbd
+sudo start adbd
