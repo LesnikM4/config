@@ -3,14 +3,14 @@
 #getdata data-lable file.fb2
 getdata(){
 cat "$2" | xmlstarlet fo --indent-tab | grep -m 1 "$1" | \
-sed -e "s/^[    ]*<$1>//" -e "s/<\/$1>[         ]*//" -e "s/^[   ]*<$1\/>[       ]*$//" | \
+sed -e "s/^[	 ]*<$1>//" -e "s/<\/$1>[	 ]*//" -e "s/^[	 ]*<$1\/>[	 ]*$//" | \
 tr -d '\012\015' 
 }
 
 #getsequence file.fb2
 getsequence(){
 cat "$1" | xmlstarlet fo --indent-tab | grep -m 1 "<sequence name" | \
-sed -e "s/^[    ]*<sequence name=\"//" -e "s/\"\ number=\"/\ /" -e "s/\"\/>/\./" | \
+sed -e "s/^[	 ]*<sequence name=\"//" -e "s/\"\ number=\"/\ /" -e "s/\"\/>/\./" | \
 tr -d '\012\015'
 }
 
