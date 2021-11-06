@@ -6,14 +6,14 @@ set imsearch=0 "Английский в режиме поиска
 " ТЕМА И ПОДСВЕТКА
 colorscheme desert
 set nocursorline "Подчеркивание текущей строки
-set background=dark
+set background= "При значении dark, меняет цвета на светлые
 set wrap "Перенос строк
 set nolinebreak "Перенос по словам
 set breakindent "Отсуп исходной строки при переносе
 filetype plugin on "Определение типа файла
 syntax on "Подсветка синтаксиса по типу файла
 set list "Показывать табы и пробелы в конце строки
-set listchars=tab:>-,trail:- "Символы для показа
+set listchars=tab:>\ ,trail:- "Символы для показа
 set shortmess+=I "Убрать сообщение при запуске
 
 " ПОИСК

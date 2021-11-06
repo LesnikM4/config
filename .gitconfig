@@ -3,5 +3,6 @@
 	email = lesnikm4@gmail.com
 [core]
 	quotePath = off
+	editor = vim
 [init]
 	defaultBranch = main
