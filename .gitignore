@@ -6,6 +6,7 @@
 
 !/.gitconfig
 !/.vimrc
+!/.gvimrc
 !/.tmux.conf
 !/.bashrc
 !/.termux/
