@@ -18,3 +18,4 @@
 !/.config/
 /.config/*
 !/.config/mpv/
+/.config/mpv/watch_later/*
