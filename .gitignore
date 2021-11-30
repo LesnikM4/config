@@ -15,3 +15,6 @@
 !/.fonts/
 /.fonts/**/.uuid
 !/.themes/
+!/.config/
+/.config/*
+!/.config/mpv/
