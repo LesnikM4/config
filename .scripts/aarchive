@@ -17,6 +17,20 @@ case $1 in
         shift
         done
         ;;
+    -um|--unzip-and-move-pdf)
+        pwd
+        arcive=$(echo ./Downloads/*.zip)
+	new_name=$(echo "$arcive" | sed -e 's/\.zip//')
+	mkdir "$new_name"
+        unzip -j "$arcive" -d "./$new_name/"
+        if $(find "./$new_name/"*.txt &>/dev/null) ; then
+	    rm "./$new_name/"*.txt	
+	fi
+        rm "$arcive"
+        mv ./Downloads/*.pdf "$new_name"
+        echo "$arcive"
+        echo "$new_name"
+        ;;
     -h|--help|*)
         echo "-u|--unzip"
         ;;
