@@ -22,9 +22,9 @@ case $1 in
 		                               -e 's/_(zf.fm)//'     )
             new_name=$(echo "$new_name" | sed -e 's/_/\ /g')
             if [[ "$2" != "$new_name" ]] ; then
-                echo "Rename music?(y/N)"
                 echo "OLD: $2"
-	            echo "NEW: $new_name"
+	        echo "NEW: $new_name"
+                echo "Rename music?(y/N)"
                 read item
                 if [ "$item" == y ]; then
 	                mv "$2" "$new_name"
