@@ -3,9 +3,9 @@
 case $1 in
     -r|--rename)
         while [ "$#" -ne "1" ] ; do
-	    if [[ "$2" == *.mp3 ]] ; then
-	        new_name=$(echo "$2" | sed -e 's/\ (2mz.me)//'\
-					                   -e 's/\ (muzzo.ru)//'\
+            if [[ "$2" == *.mp3 ]] ; then
+                 new_name=$(echo "$2" | sed -e 's/\ (2mz.me)//'\
+                                       -e 's/\ (muzzo.ru)//'\
                                        -e 's/_muzonov_net//'\
                                        -e 's/\ (kasetta.cc)//'\
                                        -e 's/\ (radio.lol)//'\
@@ -19,7 +19,25 @@ case $1 in
                                        -e 's/-(megapesni.cc)//'\
                                        -e 's/_(holidaymp3.ru)//'\
                                        -e 's/\ (Muzten.net)//'\
-		                               -e 's/_(zf.fm)//'     )
+                                       -e 's/_(zf.fm)//'\
+                                       -e 's/_(z2.fm)//'\
+                                       -e 's/\ (z2.fm)//'\
+                                       -e 's/_(galamp3.com)//'\
+                                       -e 's/\ (galamp3.com)//'\
+                                       -e 's/_(tetamix.org)//'\
+                                       -e 's/\ (tetamix.org)//'\
+                                       -e 's/(sefon.top)//'\
+                                       -e 's/_\[mp3mob.net\]//'\
+                                       -e 's/\ \[mp3mob.net\]//'\
+                                       -e 's/_(maximuzz.ru)//'\
+                                       -e 's/\ (maximuzz.ru)//'\
+                                       -e 's/(mp3gid.me)//'\
+                                       -e 's/_(YoSound.ru)//'\
+                                       -e 's/\ (YoSound.ru)//'\
+                                       -e 's/_(320\ kbps)//'\
+                                       -e 's/\ (320\ kbps)//'\
+                                        )
+                                                         new_name=$(echo "$new_name" | sed -e 's/\([^ ].\)-\([^\ ].\)/\1\ \2/g')
             new_name=$(echo "$new_name" | sed -e 's/_/\ /g')
             if [[ "$2" != "$new_name" ]] ; then
                 echo "OLD: $2"
