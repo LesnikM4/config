@@ -2,6 +2,7 @@
 !/.gitignore
 
 !/.scripts
+/.scripts/apause
 
 !/.gitconfig
 !/.vimrc
