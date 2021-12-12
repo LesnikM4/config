@@ -1,67 +1,49 @@
 #!/usr/bin/env bash
 
+rename() {
+    new_name="$1"
+    replase_pattern=(.com .COM .ru .net .org .cc .fm .lol .top .me kbps)
+    for i in ${replase_pattern[*]}; do
+        pattern="s/([^(]*$i)//"
+        new_name=$(echo "$new_name" | sed -e $pattern )
+    done
+    new_name=$(echo "$new_name" | sed -e 's/\[*.net\]//' -e 's/muzonov_net//')
+    new_name=$(echo "$new_name" | sed -e 's/_-_/\ -\ /g')
+    new_name=$(echo "$new_name" | sed -e 's/_/\ /g')
+    new_name=$(echo "$new_name" | sed -e 's/\([^\ ].\)-\([^\ ].\)/\1\ \2/g')
+    new_name=$(echo "$new_name" | sed -e 's/^\ //' -e 's/\ \.mp3/\.mp3/')
+    echo "$new_name"
+}
+
 case $1 in
     -r|--rename)
         while [ "$#" -ne "1" ] ; do
             if [[ "$2" == *.mp3 ]] ; then
-                 new_name=$(echo "$2" | sed -e 's/\ (2mz.me)//'\
-                                       -e 's/\ (muzzo.ru)//'\
-                                       -e 's/_muzonov_net//'\
-                                       -e 's/\ (kasetta.cc)//'\
-                                       -e 's/\ (radio.lol)//'\
-                                       -e 's/\ (mp3ha.org)//'\
-                                       -e 's/_(iPleer.com)//'\
-                                       -e 's/\ (unpum.com)//'\
-                                       -e 's/_(*.MP3VIZOR.COM)//'\
-                                       -e 's/_(yaya.su)//'\
-                                       -e 's/\ (320\ \ kbps)//'\
-                                       -e 's/\ (mp3profy.com)//'\
-                                       -e 's/-(megapesni.cc)//'\
-                                       -e 's/_(holidaymp3.ru)//'\
-                                       -e 's/\ (Muzten.net)//'\
-                                       -e 's/_(zf.fm)//'\
-                                       -e 's/_(z2.fm)//'\
-                                       -e 's/\ (z2.fm)//'\
-                                       -e 's/_(galamp3.com)//'\
-                                       -e 's/\ (galamp3.com)//'\
-                                       -e 's/_(tetamix.org)//'\
-                                       -e 's/\ (tetamix.org)//'\
-                                       -e 's/(sefon.top)//'\
-                                       -e 's/_\[mp3mob.net\]//'\
-                                       -e 's/\ \[mp3mob.net\]//'\
-                                       -e 's/_(maximuzz.ru)//'\
-                                       -e 's/\ (maximuzz.ru)//'\
-                                       -e 's/(mp3gid.me)//'\
-                                       -e 's/_(YoSound.ru)//'\
-                                       -e 's/\ (YoSound.ru)//'\
-                                       -e 's/_(320\ kbps)//'\
-                                       -e 's/\ (320\ kbps)//'\
-                                        )
-                                                         new_name=$(echo "$new_name" | sed -e 's/\([^ ].\)-\([^\ ].\)/\1\ \2/g')
-            new_name=$(echo "$new_name" | sed -e 's/_/\ /g')
-            if [[ "$2" != "$new_name" ]] ; then
-                echo "OLD: $2"
-	        echo "NEW: $new_name"
-                echo "Rename music?(y/N)"
-                read item
-                if [ "$item" == y ]; then
-	                mv "$2" "$new_name"
+                new_name=$(rename "$2")
+                if [[ "$2" != "$new_name" ]] ; then
+                    echo "OLD: $2"
+                    echo "NEW: $new_name"
+                    echo "Rename music?(y/N)"
+                    read item
+                    if [ "$item" == y ]; then
+                            mv "$2" "$new_name"
+                    fi
                 fi
             fi
-	    fi
         shift
-    	done
-    	;;
+        done
+        ;;
     -t|--tag-remove)
         while [ "$#" -ne "1" ] ; do
-	    if [[ "$2" == *.mp3 ]] ; then
+            if [[ "$2" == *.mp3 ]] ; then
                 eyeD3 --remove-all "$2"
-	    fi
+            fi
         shift
-    	done
-    	;;
+        done
+        ;;
     -h|--help|*)
+        echo "-h|--help"
         echo "-t|--tag-remove"
         echo "-r|--rename"
-    	;;
+        ;;
 esac
