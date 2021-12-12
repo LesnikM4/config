@@ -9,8 +9,11 @@
 !/.gvimrc
 !/.tmux.conf
 !/.bashrc
-!/.termux/
 
+!/.termux/
+/.termux/*
+!/.termux/termux.properties
+!/.termux/font.ttf
 !/.vim/
 /.vim/*
 !/.vim/backups/
