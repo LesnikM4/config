@@ -2,7 +2,7 @@
 
 rename() {
     new_name="$1"
-    replase_pattern=(.com .COM .ru .net .org .cc .fm .lol .top .me kbps)
+    replase_pattern=(.com .COM .ru .net .org .cc .fm .lol .top .me .best kbps)
     for i in ${replase_pattern[*]}; do
         pattern="s/([^(]*$i)//"
         new_name=$(echo "$new_name" | sed -e $pattern )
@@ -12,6 +12,8 @@ rename() {
     new_name=$(echo "$new_name" | sed -e 's/_/\ /g')
     new_name=$(echo "$new_name" | sed -e 's/\([^\ ].\)-\([^\ ].\)/\1\ \2/g')
     new_name=$(echo "$new_name" | sed -e 's/^\ //' -e 's/\ \.mp3/\.mp3/')
+    new_name=$(echo "$new_name" | sed -e 's/\b./\u&/g')
+    new_name=$(echo "$new_name" | sed -e 's/\.Mp3/\.mp3/g')
     echo "$new_name"
 }
 
