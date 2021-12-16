@@ -4,8 +4,8 @@
 SetWorkingDir ..\..\..\
 Menu, Tray, Icon, W:\PortableApps\AutoHotkey\HotKey\hotkey.ico
 
-;VK49 I
-#VK49::
+;VK91 ScrollLock
+VK91::
     buttonState := DllCall("user32.dll\SwapMouseButton", "UInt", 1)
     if buttonState <> 0
     {
@@ -50,8 +50,6 @@ Menu, Tray, Icon, W:\PortableApps\AutoHotkey\HotKey\hotkey.ico
 #Up::SoundSetWaveVolume "+4"
 #Down::SoundSetWaveVolume "-4"
 
-;global height:=^A_ScreenHeight-35% ;Высота основного экрана за вычетом высоты панели задач
-;#7 верхняя половина
 #VK37::WinUp()
 WinUp(){
     WinRestore A
@@ -73,6 +71,7 @@ WinRight(){
     WinRestore A
     WinMove, A,, % A_ScreenWidth/2, 0, % A_ScreenWidth/2, % A_ScreenHeight-35
 }
+
 ;#VKBD:: ;#- свернуть развернуть
 ;    {
 ;    WinGet max_min, MinMax, "A" ;Определяем развернутость окна
