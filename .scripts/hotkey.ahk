@@ -51,36 +51,28 @@ Menu, Tray, Icon, W:\PortableApps\AutoHotkey\HotKey\hotkey.ico
 #Down::SoundSetWaveVolume "-4"
 
 ;global height:=^A_ScreenHeight-35% ;Высота основного экрана за вычетом высоты панели задач
-;#VK37:: ;#7 верхняя половина
-;{
-;    SysGet, width, 78
-;    SysGet, height, 79
-;    WinRestore A
-;MsgBox % width, % height/2
-;
-;    WinMove, A,, 0, 0, % width, % height/2
-;}
-;#VK38:: ;#8 нижняя половина
-;{
-;    SysGet, width, 78
-;    SysGet, height, 79
-;    WinRestore A
-;    WinMove, A,, 0, %height%/2, %width%, %height%/2
-;}
-;#VK39:: ;#9 левая половина
-;{
-;    SysGet, width, 78
-;    SysGet, height, 79
-;    WinRestore A
-;    WinMove, A,, 0, 0, %width%/2, %height%
-;}
-;#VK30:: ;#0 правая половина
-;{
-;    SysGet, width, 78
-;    SysGet, height, 79
-;    WinRestore A
-;    WinMove, A,, %width%/2, 0, %width%/2, %height%
-;}
+;#7 верхняя половина
+#VK37::WinUp()
+WinUp(){
+    WinRestore A
+    WinMove, A,, 0, 0, %A_ScreenWidth%, % (A_ScreenHeight-35)/2
+}
+
+#VK38:: WinDown()
+WinDown(){
+    WinRestore A
+    WinMove, A,, 0, % (A_ScreenHeight-35)/2, %A_ScreenWidth%, % (A_ScreenHeight-35)/2
+}
+#VK39::WinLeft()
+WinLeft(){
+    WinRestore A
+    WinMove, A,, 0, 0, % A_ScreenWidth/2, % A_ScreenHeight-35
+}
+#VK30:: WinRight()
+WinRight(){
+    WinRestore A
+    WinMove, A,, % A_ScreenWidth/2, 0, % A_ScreenWidth/2, % A_ScreenHeight-35
+}
 ;#VKBD:: ;#- свернуть развернуть
 ;    {
 ;    WinGet max_min, MinMax, "A" ;Определяем развернутость окна
