@@ -4,6 +4,14 @@
 SetWorkingDir ..\..\..\
 Menu, Tray, Icon, W:\PortableApps\AutoHotkey\HotKey\hotkey.ico
 
+;VK49 I
+#VK49::
+    buttonState := DllCall("user32.dll\SwapMouseButton", "UInt", 1)
+    if buttonState <> 0
+    {
+        buttonState := DllCall("user32.dll\SwapMouseButton", "UInt", 0)
+    }
+
 ;VK20 Spase
 #VK20::ChangeLanguageInput()
 
