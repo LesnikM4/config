@@ -55,7 +55,6 @@ WinUp(){
     WinRestore A
     WinMove, A,, 0, 0, %A_ScreenWidth%, % (A_ScreenHeight-35)/2
 }
-
 #VK38:: WinDown()
 WinDown(){
     WinRestore A
@@ -72,84 +71,15 @@ WinRight(){
     WinMove, A,, % A_ScreenWidth/2, 0, % A_ScreenWidth/2, % A_ScreenHeight-35
 }
 
-;#VKBD:: ;#- свернуть развернуть
-;    {
-;    WinGet max_min, MinMax, "A" ;Определяем развернутость окна
-;
-;    if (max_min = "0")         ;1=Развернуто, 0=Не свернуто, не развернуто(плавающее окно), -1=Свернуто(как я понял в трею)
-;        WinMaximize "A" ;Если активное окно в состоянии "Плавающее", тогда развернуть
-;    else
-;        WinRestore "A"  ;Активное окно "Развернуто", тогда в состоянии "Плавающее"
-;    }
-;
-;!LButton::
-;   {
-;    SysGet, width, 78
-;    SysGet, height, 79
-;    CoordMode "Mouse", "Screen"                                       ;Задаем для функции связанных с мышью отсчет координат относительно экрана
-;    WinGet win_name, ID, "A"                                           ;Получаем текущее окно
-;
-;    WinRestore "A"                                                    ;Перевод в состоянии "Плавающее"
-;    WinGetPos currentX, currentY, winwidth, winheight, win_name   ;Получить текущее положение окна и его размер
-;    MouseMove currentX+winwidth/2, currentY+winheight/2               ;Поставить курсор в середину активного окна
-;    loop {
-;        klik:=KeyWait "LButton", "T0.05"                             ;Ждем нажатие левой клавиши
-;        if (klik = 1) {
-;             WinActivate win_name                                     ;Активируем перемещенное окно
-;             Exit                                                     ;При нажатии завершаем скрипт
-;             }
-;        MouseGetPos endX, endY                                      ;Получаем конечные координаты
-;        deltaX:=endX-currentX-winwidth/2, deltaY:=endY-currentY-winheight/2 ;Считаем перемещение мыши
-;        new_winX:=currentX+deltaX, new_winY:=currentY+deltaY          ;Считаем новое положение окна
-;        currentX:=new_winX, currentY:=new_winY                        ;Получаем начальные координаты для следующего прохода
-;        WinMove new_winX, new_winY,,, win_name                        ;Перемещаем окно
-;        }
-;    }
-;
-;!RButton::
-;    {
-;    SysGet, width, 78
-;    SysGet, height, 79
-;    CoordMode "Mouse", "Screen"                                       ;Задаем для функции связанных с мышью отсчет координат относительно экрана
-;    WinGet win_name, ID, "A"                                           ;Получаем текущее окно
-;
-;    WinGetPos currentX, currentY, w, h, win_name                  ;Получить текущее положение окна и его размер
-;    MouseMove currentX+w-20, currentY+h-20                            ;Поставить курсор в левый нижний угол активного окна
-;    loop {
-;        klik:=KeyWait "RButton", "T0.05"                             ;Ждем нажатие левой клавиши
-;        if (klik = 1) {
-;             WinActivate win_name                                     ;Активируем перемещенное окно
-;             Exit                                                     ;При нажатии завершаем скрипт
-;             }
-;        MouseGetPos endX, endY                                      ;Получаем конечные координаты
-;        deltaX:=endX-currentX-w+20, deltaY:=endY-currentY-h+20        ;Считаем перемещение мыши
-;        new_w:=w+deltaX, new_h:=h+deltaY                              ;Считаем новое положение окна
-;        w:=new_w, h:=new_h                                            ;Получаем начальные координаты для следующего прохода
-;        WinMove ,,new_w, new_h, win_name                              ;Перемещаем окно
-;        }
-;    }
-;
-;#VK50:: ;#P
-;    {
-;    InputBox sum, "20"
-;    if (sum.Result = "OK")
-;        {
-;        sum := sum.Value*1.2
-;        sum := Round(sum,2)
-;        SendInput sum
-;        }
-;    }
-;
-;#VK4F:: ;#O
-;    {
-;    InputBox sum, "25"
-;    if (sum.Result = "OK")
-;        {
-;        sum := sum.Value*1.26
-;        sum := Round(sum,2)
-;        SendInput sum
-;        }
-;    }
+;VKBD -
+#VKBD::WinMaxMin()
+    WinMaxMin(){
+    WinGet max_min, MinMax, A
+    if (max_min = "0")
+        WinMaximize A
+    else
+        WinRestore A
+    }
 
 ;VK51 Q
 #VK51::ExitApp
@@ -178,18 +108,6 @@ SendOfCaps(sendCapsOff, sendCapsOn)
         Send %sendCapsOff% ;При вылюченном CapsLock
     }
 
-;CloseTrans(ExitReason, ExitCode)
-;    {
-;    ProcessClose trans_pid ;Закрытие переводчика
-;    }
-;
-;RunAndActive(Target,ProcessName)
-;    {
-;    Run Target
-;    Sleep 1
-;    WinWait "ahk_exe " ProcessName
-;    WinActive "ahk_exe " ProcessName
-;    }
 
 ; Код перевода скопирован от уважаемого teadrinker, http://forum.script-coding.com/viewtopic.php?id=4492
 #NoEnv
