@@ -1,38 +1,48 @@
-﻿;AutoHotKey_v1.1 HotKey_v0.7 lesnikm4@gmail.com
+﻿; AutoHotKey_v1.1 HotKey_v0.7 lesnikm4@gmail.com
+; KeyMap: # - Win, + - Shift, <^>! - RAlt(in russhian keyboard)
 
 SetWorkingDir ..\..\..\
-;TraySetIcon "W:\PortableApps\AutoHotkey\HotKey\hotkey.ico"
+Menu, Tray, Icon, W:\PortableApps\AutoHotkey\HotKey\hotkey.ico
 
-;Run ".\PortableApps\QTranslate\QTranslate.exe",,"Hide", &trans_pid
-;OnExit CloseTrans
-;#VK4B::Run .\PortableApps\AutoHotkey\Compiler\AutoHotkeyV1.1_U64.exe W:\PortableApps\AutoHotkey\HotKey\translate_mini.ahk
-#VK20::ChangeLanguageInput() ;Нажатие на Пробел при ужержании клавиши Win
+;VK20 Spase
+#VK20::ChangeLanguageInput()
 
-<^>!VK53::SendOfCaps("і","І")  ;Ы
-<^>!+VK53::SendOfCaps("І","і") ;+Ы
-<^>!VKDD::SendOfCaps("ї","Ї")  ;Ъ
-<^>!+VKDD::SendOfCaps("Ї","ї") ;+Ъ
-<^>!VK55::SendOfCaps("ґ","Ґ")  ;Г
-<^>!+VK55::SendOfCaps("Ґ","ґ") ;+Г
-<^>!VKDE::SendOfCaps("є","Є")  ;Э
-<^>!+VKDE::SendOfCaps("Є","є") ;+Э
-<^>!VK45::SendOfCaps("ў","Ў")  ;У
-<^>!+VK45::SendOfCaps("Ў","ў") ;+У
-<^>!VK54::SendOfCaps("ё","Ё")  ;Е
-<^>!+VK54::SendOfCaps("Ё","ё") ;+Е
+;VK53 Ы
+<^>!VK53::SendOfCaps("і","І")
+<^>!+VK53::SendOfCaps("І","і")
+;VKDD Ъ
+<^>!VKDD::SendOfCaps("ї","Ї")
+<^>!+VKDD::SendOfCaps("Ї","ї")
+;VK55 Г
+<^>!VK55::SendOfCaps("ґ","Ґ")
+<^>!+VK55::SendOfCaps("Ґ","ґ")
+;VKDE Э
+<^>!VKDE::SendOfCaps("є","Є")
+<^>!+VKDE::SendOfCaps("Є","є")
+;VK45 У
+<^>!VK45::SendOfCaps("ў","Ў")
+<^>!+VK45::SendOfCaps("Ў","ў")
+;VK54 Е
+<^>!VK54::SendOfCaps("ё","Ё")
+<^>!+VK54::SendOfCaps("Ё","ё")
 
+;VK54 T
 #VK54::Run .\PortableApps\Git\git-bash, .\lm\
+;VK46 F
 #VK46::Run C:\Windows\explorer.exe ..\..\..\lm\
+;VK43 C
 #VK43::Run C:\Windows\System32\calc.exe
+;VK42 B
 #VK42::Run .\PortableApps\GoogleChromePortable\GoogleChromePortable.exe
+;VK56 V
 #VK56::Run .\PortableApps\VeraCryptPortable\VeraCryptPortable.exe
+;VK48 H
 #VK48::Run .\PortableApps\fscPortable\fscPortable.exe
 
-#Up::SoundSetWaveVolume "+4"     ;#Up
-#Down::SoundSetWaveVolume "-4"   ;#Down
+#Up::SoundSetWaveVolume "+4"
+#Down::SoundSetWaveVolume "-4"
 
 ;global height:=^A_ScreenHeight-35% ;Высота основного экрана за вычетом высоты панели задач
-
 ;#VK37:: ;#7 верхняя половина
 ;{
 ;    SysGet, width, 78
@@ -141,13 +151,11 @@ SetWorkingDir ..\..\..\
 ;        SendInput sum
 ;        }
 ;    }
-;
-#VK51::ExitApp    ;#Q
-#VK55::           ;#U
-    {
-    Run ".\PortableApps\AutoHotkey\StartHotKey.exe"
-    ExitApp ;Перезапуск скрипта
-    }
+
+;VK51 Q
+#VK51::ExitApp
+;VK55 U
+#VK55::Reload
 
 ChangeLanguageInput()
     {
