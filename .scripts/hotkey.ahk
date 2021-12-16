@@ -113,13 +113,16 @@ SendOfCaps(sendCapsOff, sendCapsOn)
 #NoEnv
 #SingleInstance, force
 
-VK70::
+^+VK20::
 {
+                LastClip = ClipBoard
+                Send ^{VK43}
                 sourceText := Clipboard
+                ClipBoard := LastClip
                 from := RegExMatch(sourceText, "[À-ßà-ÿ]") ? "ru" : "auto"
                 to := from = "ru" ? "en" : "ru"
                 transText := GoogleTranslate(sourceText, from, to)
-                MsgBox %transText%
+                TrayTip %sourceText%, %transText%
 }
 
 CreateUrl(text, lng) {
@@ -160,10 +163,10 @@ GoogleTranslate(str, ByRef from, to := "en") {
       Loop % oJSON[1].length  {
          trans .= "`n+"
          obj := oJSON[1][A_Index-1][1]
-         Loop % obj.length  {
-            txt := obj[A_Index - 1]
-            trans .= (MainTransText = txt ? "" : "`n" txt)
-         }
+      ;   Loop % obj.length  {
+      ;      txt := obj[A_Index - 1]
+      ;      trans .= (MainTransText = txt ? "" : "`n" txt)
+      ;   }
       }
    }
    if !IsObject(oJSON[1])
