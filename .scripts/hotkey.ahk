@@ -123,6 +123,7 @@ SendOfCaps(sendCapsOff, sendCapsOn)
                 to := from = "ru" ? "en" : "ru"
                 transText := GoogleTranslate(sourceText, from, to)
                 TrayTip %sourceText%, %transText%
+                FileAppend %sourceText% ::: %transText% `n, ./lm/.trans_history
 }
 
 CreateUrl(text, lng) {
