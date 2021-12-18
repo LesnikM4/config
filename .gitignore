@@ -10,6 +10,9 @@
 !/.tmux.conf
 !/.bashrc
 
+!/.ssh/
+/.ssh/*
+!/.ssh/config
 !/.termux/
 /.termux/*
 !/.termux/termux.properties
