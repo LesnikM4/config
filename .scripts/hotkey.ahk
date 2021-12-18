@@ -119,11 +119,14 @@ SendOfCaps(sendCapsOff, sendCapsOn)
                 Send ^{VK43}
                 sourceText := Clipboard
                 ClipBoard := LastClip
-                from := RegExMatch(sourceText, "[À-ßà-ÿ]") ? "ru" : "auto"
+                from := RegExMatch(sourceText, "[А-Яа-я]") ? "ru" : "auto"
                 to := from = "ru" ? "en" : "ru"
                 transText := GoogleTranslate(sourceText, from, to)
                 TrayTip %sourceText%, %transText%
-                FileAppend %sourceText% ::: %transText% `n, ./lm/.trans_history
+                inTextLineBreak := RegExMatch(sourceText, "[\n]")
+                if (!inTextLineBreak){
+                    FileAppend %sourceText% ::: %transText% `n, ./lm/.trans_history
+                }
 }
 
 CreateUrl(text, lng) {
