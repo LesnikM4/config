@@ -85,6 +85,6 @@ if !has('gui_win32')
 endif
 if has('gui_win32')
     source W:\lm\.gvimrc
-    set backupdir=W:\portableapps\gVimPortable\Backups\,. " // используются для сохранения полного пути файла, гре разделитель каталогов %
-    set directory=W:\portableapps\gVimPortable\Backups\,. " если не найден каталог с бекапом будет использован текущий каталог (.)
+    set backupdir=..\..\..\lm\.vim\backups//,. " // используются для сохранения полного пути файла, гре разделитель каталогов %
+    set directory=..\..\..\lm\.vim\backups//,. " если не найден каталог с бекапом будет использован текущий каталог (.)
 endif
