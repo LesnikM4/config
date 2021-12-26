@@ -26,5 +26,6 @@
 !/.themes/
 !/.config/
 /.config/*
+!/.config/nvim/
 !/.config/mpv/
 /.config/mpv/watch_later/*
