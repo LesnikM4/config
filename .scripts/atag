@@ -1,0 +1,26 @@
+#o!/usr/bin/env bash
+while [ "$#" -ne "0" ] ; do
+    name="$1"
+    termux-open "$name"
+    echo "File name: $name"
+    echo "Add tag?(1/2/3/4/5/a/p/N)"
+    read tag
+    case "$tag" in
+        1|2|3|4|5)
+            name="#$tag $name"
+        ;;
+        p)
+            name="#pixel $name"
+        ;;
+        a)
+            name="#anime $name"
+        ;;
+        f)
+            name="#full $name"
+        ;;
+    esac
+    if [ "$name" != "$1" ] ; then
+        mv "$1" "$name"
+    fi
+    shift
+done
