@@ -12,8 +12,7 @@ VK91::
         buttonState := DllCall("user32.dll\SwapMouseButton", "UInt", 0)
     }
 
-;VK20 Spase
-#VK20::ChangeLanguageInput()
+CapsLock::ChangeLanguageInput()
 
 ;VK53 Ы
 <^>!VK53::SendOfCaps("і","І")
