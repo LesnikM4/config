@@ -1,0 +1,17 @@
+_abook(){
+
+    COMPREPLY=() #пустой список
+    cur="${COMP_WORDS[COMP_CWORD]}" #текущий вводимый аргумент
+    subcommands_1="--rename --unzip --unzip_and_rename_all_in_folder" #массив подкоманд первого уровня
+
+    if [[ ${COMP_CWORD} == 1 ]] ; then #если вводится первый аргумент, то попробуем его дополнить
+        COMPREPLY=( $(compgen -W "${subcommands_1}" -- ${cur}) )
+        return 0
+    fi
+
+    if [ "${COMP_CWORD}" -ge "2" ] ; then
+        COMPREPLY=( $(compgen -f  -- ${cur}) )
+        return 0
+    fi
+} &&
+    complete -F _abook abook
