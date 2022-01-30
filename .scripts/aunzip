@@ -1,23 +1,7 @@
 #!/usr/bin/env bash
 
-case $1 in 
-    -u|--unzip-with-name-and-date)
-	while [ "$#" -ne "1" ] ; do
-	    if [[ "$2" == *.zip ]] ; then
-		echo "$2"
-		new_name=$(echo "$2" | sed -e 's/\.zip//')
-		mkdir "$new_name"
-                unzip -j "$2" -d "./$new_name/"
-	        if $(find "./$new_name/"*.txt &>/dev/null) ; then
-		    rm "./$new_name/"*.txt	
-		fi
-		touch -r "$2" "$new_name"
-                rm "$2"
-            fi
-        shift
-        done
-        ;;
-    -up|--unzip-and-move-pdf)
+case $1 in
+    -u|--unzip-and-move-pdf)
         if [ -e ./*.zip ];then
             if [ -e ./*.pdf ];then
                 arcive=$(echo ./*.zip)
@@ -41,8 +25,7 @@ case $1 in
         mv ./*/ "$pdf_name"
         ;;
     -h|--help|*)
-        echo "-u|--unzip-with-name-and-date"
-        echo "-up|--unzip-and-move-pdf"
-        echo "-h|--rename-from-pdf-in-folder"
+        echo "-u|--unzip-and-move-pdf"
+        echo "-m|--rename-from-pdf-in-folder"
         ;;
 esac
