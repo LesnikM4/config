@@ -11,6 +11,10 @@ case $1 in
     -m|--mouse-key-exchange)
         mouse-key-exchange
         ;;
+    -t|--touchpad-set)
+        # Application setting for touchpad
+        synclient TapButton1=1 TapButton2=3 RBCornerButton=3 #VertEdgeScroll=1 HorizEdgeScroll=1 PalmDetect=1
+        ;;
     -p|--pause-key)
         cd ./Downloads/
         ../.scripts/aunzip -up
