@@ -26,3 +26,8 @@ echo -e $text_end || echo -e $text_fail
 #chroot /mnt
 #grub-insatll /dev/sdX
 #update-grub --output=/boot/grub/grub.cfg'
+
+# ANDROID WIFI ADB
+#sudo setprop service.adb.tcp.port 5555
+#sudo stop adbd
+#sudo start adbd
