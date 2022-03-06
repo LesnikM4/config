@@ -1,8 +1,8 @@
 ﻿; AutoHotKey_v1.1 HotKey_v0.7 lesnikm4@gmail.com
 ; KeyMap: # - Win, + - Shift, <^>! - RAlt(in russhian keyboard)
 
-SetWorkingDir ..\..\..\
-Menu, Tray, Icon, W:\PortableApps\AutoHotkey\HotKey\hotkey.ico
+SetWorkingDir ..\..\
+Menu, Tray, Icon, .\PortableApps\AutoHotkey\HotKey\hotkey.ico
 
 ;VK91 ScrollLock
 VK91::
