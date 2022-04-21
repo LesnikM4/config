@@ -17,6 +17,6 @@ case $1 in
         ;;
     -p|--pause-key)
         cd ./Downloads/
-        ../.scripts/aunzip -up
+        ../.scripts/aunzip -u
         ;;
 esac

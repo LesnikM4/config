@@ -44,7 +44,6 @@ case $1 in
         done
         ;;
     -h|--help|*)
-        echo "-h|--help"
         echo "-t|--tag-remove"
         echo "-r|--rename"
         ;;
