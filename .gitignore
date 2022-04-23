@@ -21,6 +21,7 @@
 /.vim/*
 !/.vim/backups/
 !/.vim/keymap/
+!/.vim/pack/
 !/.fonts/
 /.fonts/**/.uuid
 !/.themes/
