@@ -17,6 +17,7 @@
 /.termux/*
 !/.termux/termux.properties
 !/.termux/font.ttf
+!/.termux/tasker/
 !/.vim/
 /.vim/*
 !/.vim/backups/

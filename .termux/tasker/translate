@@ -1,0 +1,4 @@
+#!/bin/bash
+text_original=$(termux-clipboard-get);
+text_trans=$(trans -b :ru $text_original);
+echo $text_original $text_trans >> /data/data/com.termux/files/home/.trans_history;

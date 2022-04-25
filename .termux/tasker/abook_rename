@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+cd /sdcard/Download/
+~/.scripts/abook -r *.fb2
