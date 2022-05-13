@@ -16,7 +16,7 @@ case $1 in
         synclient TapButton1=1 TapButton2=3 RBCornerButton=3 #VertEdgeScroll=1 HorizEdgeScroll=1 PalmDetect=1
         ;;
     -p|--pause-key)
-        cd ./Downloads/
-        ../.scripts/aunzip -u
+        cd ~/
+        .scripts/aunzip -u
         ;;
 esac
