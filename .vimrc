@@ -84,7 +84,7 @@ if !has('gui_win32')
     set directory=~/.vim/backups//,. " если не найден каталог с бекапом будет использован текущий каталог (.)
 endif
 if has('gui_win32')
-    source W:\lm\.gvimrc
+    source C:\lm\.gvimrc
     set backupdir=..\..\..\lm\.vim\backups//,. " // используются для сохранения полного пути файла, гре разделитель каталогов %
     set directory=..\..\..\lm\.vim\backups//,. " если не найден каталог с бекапом будет использован текущий каталог (.)
 endif

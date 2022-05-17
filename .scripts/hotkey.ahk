@@ -1,4 +1,4 @@
-﻿; AutoHotKey_v1.1 HotKey_v0.7 lesnikm4@gmail.com
+; AutoHotKey_v1.1 HotKey_v0.7 lesnikm4@gmail.com
 ; KeyMap: # - Win, + - Shift, <^>! - RAlt(in russhian keyboard)
 
 SetWorkingDir ..\..\
@@ -34,7 +34,7 @@ CapsLock::ChangeLanguageInput()
 <^>!+VK54::SendOfCaps("Ё","ё")
 
 ;VK54 T
-#VK54::Run .\PortableApps\Git\git-bash, .\lm\
+#VK54::Run .\PortableApps\CygwinPortable\App\Runtime\Cygwin\Cygwin.bat
 ;VK46 F
 #VK46::Run C:\Windows\explorer.exe ..\..\..\lm\
 ;VK43 C

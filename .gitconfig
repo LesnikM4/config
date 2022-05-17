@@ -4,5 +4,6 @@
 [core]
 	quotePath = off
 	editor = vim
+        autocrlf = true
 [init]
 	defaultBranch = main
