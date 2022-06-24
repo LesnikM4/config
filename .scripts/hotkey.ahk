@@ -4,12 +4,14 @@
 SetWorkingDir ..\..\
 Menu, Tray, Icon, .\PortableApps\AutoHotkey\HotKey\hotkey.ico
 
-;VK91 ScrollLock
-VK91::
+;VK4D M
+#VK4D:: MouseButtonRevers()
+MouseButtonRevers(){
     buttonState := DllCall("user32.dll\SwapMouseButton", "UInt", 1)
     if buttonState <> 0
-    {
+        {
         buttonState := DllCall("user32.dll\SwapMouseButton", "UInt", 0)
+        }
     }
 
 CapsLock::ChangeLanguageInput()
