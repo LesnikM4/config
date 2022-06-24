@@ -15,23 +15,23 @@ VK91::
 CapsLock::ChangeLanguageInput()
 
 ;VK53 Ы
-<^>!VK53::SendOfCaps("і","І")
-<^>!+VK53::SendOfCaps("І","і")
+<^>!VK53::SendOfCaps("{U+0456}","{U+0406}")
+<^>!+VK53::SendOfCaps("{U+0406}","{U+0456}")
 ;VKDD Ъ
-<^>!VKDD::SendOfCaps("ї","Ї")
-<^>!+VKDD::SendOfCaps("Ї","ї")
+<^>!VKDD::SendOfCaps("{U+0457}","{U+0407}")
+<^>!+VKDD::SendOfCaps("{U+0407}","{U+0457}")
 ;VK55 Г
-<^>!VK55::SendOfCaps("ґ","Ґ")
-<^>!+VK55::SendOfCaps("Ґ","ґ")
+<^>!VK55::SendOfCaps("{U+0491}","{U+0490}")
+<^>!+VK55::SendOfCaps("{U+0490}","{U+0491}")
 ;VKDE Э
-<^>!VKDE::SendOfCaps("є","Є")
-<^>!+VKDE::SendOfCaps("Є","є")
+<^>!VKDE::SendOfCaps("{U+0454}","{U+0404}")
+<^>!+VKDE::SendOfCaps("{U+0404}","{U+0454}")
 ;VK45 У
-<^>!VK45::SendOfCaps("ў","Ў")
-<^>!+VK45::SendOfCaps("Ў","ў")
+<^>!VK45::SendOfCaps("{U+045E}","{U+040E}")
+<^>!+VK45::SendOfCaps("{U+040E}","{U+045E}")
 ;VK54 Е
-<^>!VK54::SendOfCaps("ё","Ё")
-<^>!+VK54::SendOfCaps("Ё","ё")
+<^>!VK54::SendOfCaps("{U+0451}","{U+0401}")
+<^>!+VK54::SendOfCaps("{U+0401}","{U+0451}")
 
 ;VK54 T
 #VK54::Run .\PortableApps\CygwinPortable\App\Runtime\Cygwin\Cygwin.bat
@@ -46,8 +46,8 @@ CapsLock::ChangeLanguageInput()
 ;VK48 H
 #VK48::Run .\PortableApps\fscPortable\fscPortable.exe
 
-#Up::SoundSetWaveVolume "+4"
-#Down::SoundSetWaveVolume "-4"
+#Up::SoundSetWaveVolume "+1%"
+#Down::SoundSetWaveVolume "-1%"
 
 #VK37::WinUp()
 WinUp(){
@@ -87,14 +87,19 @@ WinRight(){
 
 ChangeLanguageInput()
     {
-    active_hwnd := WinExist("A")
-    threadID := dllCall("GetWindowThreadProcessId", "uint", active_hwnd, "uint", 0)
-    code := dllCall("GetKeyboardLayout", "uint", threadID, "uint") & 0xFFFF ;Получение кода текущей раскладки
-    if (code == 1033) {                                                     ;RU=1049, EN=1033
-        SendMessage, 0x50,, 0x4190419,, A ;Если текущий язык ввода английский, переключает на русский
+    WinGet, winID,, A
+    threadID := dllCall("GetWindowThreadProcessId", "uint", winID, "uint", 0)
+    code := dllCall("GetKeyboardLayout", "uint", threadID) ;Получение кода текущей раскладки
+    while (!code) { ; Это грязный хак, если у не удалось получить раскладку у командной строки
+        MsgBox , , , , 0.001
+        code := DllCall("GetKeyboardLayout", "UInt")
+        }
+    ControlGetFocus, ControlNN, A ; Активирует в случае окна поиска или загрузки
+    if (code == 67699721) {                                                     ;RU=1049, EN=1033
+        PostMessage, 0x50,, 0x4190419, %ControlNN%, A ;Если текущий язык ввода английский, переключает на русский
         }
     else {
-        SendMessage, 0x50,, 0x4090409,, A ;Если друкой язык ввода, переключает на английский
+        PostMessage, 0x50,, 0x4090409, %ControlNN%, A ;Если друкой язык ввода, переключает на английский
         }
     }
 
