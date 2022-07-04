@@ -116,4 +116,4 @@ fi
 export PATH="$PATH:/usr/local/sbin:usr/sbin:/sbin"
 export PATH="$PATH:~/.scripts"
 
-alias vi="nvim"
+alias vi="vim"
