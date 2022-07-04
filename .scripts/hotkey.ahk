@@ -2,7 +2,7 @@
 ; KeyMap: # - Win, + - Shift, <^>! - RAlt(in russhian keyboard)
 
 SetWorkingDir ..\..\
-Menu, Tray, Icon, .\PortableApps\AutoHotkey\HotKey\hotkey.ico
+Menu, Tray, Icon, C:\PortableApps\AutoHotkey\HotKey\hotkey.ico
 
 ;VK4D M
 #VK4D:: MouseButtonRevers()
@@ -38,7 +38,7 @@ CapsLock::ChangeLanguageInput()
 ;VK54 T
 #VK54::Run .\PortableApps\CygwinPortable\App\Runtime\Cygwin\Cygwin.bat
 ;VK46 F
-#VK46::Run C:\Windows\explorer.exe ..\..\..\lm\
+#VK46::Run C:\Windows\explorer.exe %A_ScriptDir%\..\
 ;VK43 C
 #VK43::Run C:\Windows\System32\calc.exe
 ;VK42 B
